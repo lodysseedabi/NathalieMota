@@ -1,0 +1,78 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Light.ttf") format("ttf");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "SpaceMono";
+  src: url("/assets/fonts/SpaceMono-Regular.ttf") format("ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpaceMono";
+  src: url("/assets/fonts/SpaceMono-Italic.ttf") format("ttf");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "SpaceMono";
+  src: url("/assets/fonts/SpaceMono-Bold.ttf") format("ttf");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "SpaceMono";
+  src: url("/assets/fonts/SpaceMono-BoldItalic.ttf") format("ttf");
+  font-style: italic;
+  font-weight: 700;
+}
+p {
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 300;
+}
+
+h1 {
+  font-family: "SpaceMono";
+  font-size: 96px;
+  font-style: italic;
+  font-weight: 700;
+}
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 27.6px;
+  }
+}
+
+h2 {
+  font-family: "SpaceMono";
+  font-size: 66px;
+  font-style: italic;
+  font-weight: 400;
+}
+@media screen and (max-width: 767px) {
+  h2 {
+    font-size: 46px;
+  }
+}
+
+h3 {
+  font-family: "SpaceMono";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.legend {
+  font-family: "SpaceMono";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}/*# sourceMappingURL=main.css.map */

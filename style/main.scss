@@ -1,21 +1,10 @@
-/*
-Theme Name: nathaliemota
-Theme URI: http://nathalie-mota.local/
-Author: L'Odyssée d'Abi
-Author URI: https://lodysseedabi.com/
-Description: Thème pour le site de Nathalie Mota, photographe Freelance
-Version: 1.0
-Tags: photographe, freelance
-Text Domain: nathaliemota
-*/
-
  // Imports des différents fichiers scss
- @import "style/layout/header.scss";
- @import "style/layout/footer.scss";
- @import "style/pages/home.scss";
- @import "style/base/fonts.scss";
- @import "style/base/variables.scss";
- @import "style/components/buttons.scss";
+ @import "layout/header.scss";
+ @import "layout/footer.scss";
+ @import "pages/home.scss";
+ @import "base/fonts.scss";
+ @import "base/variables.scss";
+ @import "components/buttons.scss";
 
  // Définition des styles globaux
 p {

@@ -4,9 +4,5 @@
             <li><a href="#">Vie Privée</a></li>
             <li><p>Tous droits réservés</p></li>
         </ul>
-	</footer>
-
-<?php wp_footer(); ?>
-
-</body>
-</html>
+</footer>
+    
