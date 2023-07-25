@@ -27,3 +27,36 @@ document.addEventListener("DOMContentLoaded", function () {
     crossIcon.addEventListener("click", closeMobileMenu);
  
 });
+
+//Ouverture de la modale de contact au clique sur l'onglet Contact du menu 
+document.addEventListener("DOMContentLoaded", function () {
+  var modal = document.getElementById("contactModal");
+
+  // Fonction pour ouvrir la modale
+  function openModal() {
+    modal.style.display = "block";
+  }
+
+  // Fonction pour fermer la modale
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
+  var contactTabs = document.querySelectorAll('a[href="#contactModal"]');
+  contactTabs.forEach(function (contactTab) {
+    contactTab.addEventListener("click", function (event) {
+      event.preventDefault();
+      openModal();
+    });
+  });
+
+  // Gestionnaire d'événement pour fermer la modale en cliquant en dehors de celle-ci
+  window.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+});
+
+

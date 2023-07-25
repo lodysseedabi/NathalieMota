@@ -186,6 +186,85 @@ ul#menu-menu-principal > li a:hover {
     flex-direction: column;
   }
 }
+.container-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#contactModal {
+  display: none;
+  border: black 5px solid;
+  padding-bottom: 30px;
+  padding-top: 10px;
+  width: 30%;
+}
+@media screen and (max-width: 767px) {
+  div#contactModal {
+    width: 100%;
+  }
+}
+
+.img-contact-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  background-image: url("../assets/images/Contact-header.png");
+  background-size: cover;
+  background-position: center;
+}
+
+label {
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+input, textarea {
+  height: 40px;
+  border-radius: 10px;
+  border: 2px #D8D8D8 solid;
+}
+
+textarea {
+  height: 300px;
+}
+
+.wpforms-field {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  width: 50%;
+}
+
+#wpforms-form-14 > div.wpforms-field-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wpforms-submit-container {
+  display: flex;
+  justify-content: center;
+}
+
+#wpforms-submit-14 {
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 50%;
+  background-color: #D8D8D8;
+  font-family: "SpaceMono", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+}
+
 p {
   font-family: "Poppins";
   font-size: 14px;
