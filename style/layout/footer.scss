@@ -1,0 +1,48 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid black;
+}
+
+.footer ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.footer ul > li a {
+    text-decoration: none; 
+    color: black;
+    font-family: 'SpaceMono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 20px;
+  }
+
+  .footer ul > li a:hover {
+    font-weight: 700;
+  }
+
+  .footer ul > li p {
+    color: black;
+    font-family: 'SpaceMono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0 20px;
+  }
+
+  /* Styles pour la version mobile */
+  @media (max-width: 767px) {
+    /* Cacher le menu mobile */
+    .footer ul {
+      display: flex;
+      flex-direction: column;
+    }
+}

@@ -1,4 +1,114 @@
+/* Mise en forme du bloc header */
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 20px 150px;
 }
+
+/* Mise en forme du logo */
+.logo {
+    width: 220px;
+    height: 100%;
+}
+
+/* Mise en forme du menu */
+ul#menu-menu-principal {
+    list-style: none;
+    display: flex;
+}
+
+ul#menu-menu-principal > li a {
+    text-decoration: none; 
+    color: black;
+    font-family: 'SpaceMono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 20px;
+  }
+
+  ul#menu-menu-principal > li a:hover {
+    font-weight: 700;
+  }
+
+/* Mise en forme du menu hamburger en version mobile */
+.mobile-menu {
+    flex-direction: column;
+    background-color: $rouge;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .mobile-menu li a {
+    text-decoration: none; 
+    color: white;
+    font-family: 'SpaceMono', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 44px;
+    text-transform: uppercase;
+  }
+  
+  .mobile-menu li a:hover {
+    font-weight: 700;
+  }
+
+  .hamburger-icon,
+  .cross-icon {
+    display: none;
+    cursor: pointer;
+  }
+  
+  /* Styles pour la version mobile */
+  @media (min-width: 767px) {
+    /* Cacher le menu mobile */
+    .mobile-menu {
+      display: none;
+    }
+    .hamburger-icon {
+      display: none !important;
+    }
+}
+
+  @media (max-width: 767px) {
+    /* Cacher le menu desktop */
+    ul#menu-menu-principal {
+      display: none;
+    }
+    .header {
+        margin: 20px 25px;
+    }
+  
+    /* Afficher le bouton hamburger en version mobile */
+    .hamburger-icon {
+      display: block;
+    }
+  
+    /* Cacher le bouton croix en version mobile */
+    .cross-icon {
+      display: none;
+    }
+  
+    /* Afficher le menu hamburger en version mobile lorsqu'il est ouvert */
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+  }

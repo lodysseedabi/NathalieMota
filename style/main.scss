@@ -1,10 +1,11 @@
  // Imports des différents fichiers scss
+ @import "base/variables.scss";
+ @import "base/fonts.scss";
+ @import "components/buttons.scss";
  @import "layout/header.scss";
  @import "layout/footer.scss";
  @import "pages/home.scss";
- @import "base/fonts.scss";
- @import "base/variables.scss";
- @import "components/buttons.scss";
+ @import "layout/contact.scss";
 
  // Définition des styles globaux
 p {
@@ -46,3 +47,4 @@ h3 {
     font-style: normal;
     font-weight: 400;
 }
+
