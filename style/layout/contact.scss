@@ -7,7 +7,8 @@
 
 //Modale
 div#contactModal {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
     border: black 5px solid;
     padding-bottom: 30px;
     padding-top: 10px;
@@ -15,7 +16,13 @@ div#contactModal {
     @media screen and (max-width: 767px) {
         width: 100%;
       }
+      transition: opacity 1s ease;
 }
+
+div#contactModal.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
 
 // Image 

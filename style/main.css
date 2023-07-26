@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Poppins";
   src: url("../assets/fonts/Poppins-Light.ttf") format("truetype");
@@ -193,16 +194,24 @@ ul#menu-menu-principal > li a:hover {
 }
 
 div#contactModal {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   border: black 5px solid;
   padding-bottom: 30px;
   padding-top: 10px;
   width: 30%;
+  transition: opacity 1s ease;
 }
 @media screen and (max-width: 767px) {
   div#contactModal {
     width: 100%;
   }
+}
+
+div#contactModal.open {
+  opacity: 1;
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.6); /* Ajustez la valeur alpha (dernier paramètre) pour l'opacité du fond sombre */
 }
 
 .img-contact-div {

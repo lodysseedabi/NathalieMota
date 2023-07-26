@@ -32,14 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   var modal = document.getElementById("contactModal");
 
-  // Fonction pour ouvrir la modale
   function openModal() {
-    modal.style.display = "block";
+    modal.classList.add("open");
   }
 
-  // Fonction pour fermer la modale
   function closeModal() {
-    modal.style.display = "none";
+    modal.classList.remove("open");
   }
 
   // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
