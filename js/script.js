@@ -1,5 +1,5 @@
 // Menu hamburger 
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     const hamburgerIcon = document.querySelector(".hamburger-icon");
     const crossIcon = document.querySelector(".cross-icon");
     const mobileMenu = document.querySelector(".mobile-menu");
@@ -27,33 +27,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Ouverture de la modale de contact au clique sur l'onglet Contact du menu 
-  document.addEventListener("DOMContentLoaded", function () {
-  var modal = document.getElementById("container-contact-modal");
+    document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("container-contact-modal");
 
-  function openModal() {
-    modal.style.display = "block";
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
-  // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
-  var contactTabs = document.querySelectorAll('a[href="#contactModal"]');
-  contactTabs.forEach(function (contactTab) {
-    contactTab.addEventListener("click", function (event) {
-      event.preventDefault();
-      openModal();
-    });
-  });
-
-  // Gestionnaire d'événement pour fermer la modale en cliquant en dehors de celle-ci
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal()
+    function openModal() {
+      modal.style.display = "block";
     }
-  }
-});
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
+    var contactTabs = document.querySelectorAll('a[href="#contactModal"]');
+    contactTabs.forEach(function (contactTab) {
+      contactTab.addEventListener("click", function (event) {
+        event.preventDefault();
+        openModal();
+      });
+    });
+
+    // Gestionnaire d'événement pour fermer la modale en cliquant en dehors de celle-ci
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal()
+      }
+    }
+  });
 
 //Chargement de plus de photos sur la page d'accueil
 

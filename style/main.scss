@@ -20,6 +20,7 @@ h1 {
     font-size: 96px;
     font-style: italic;
     font-weight: 700;
+    text-transform: uppercase;
     @media screen and (max-width: 767px) {
     font-size: 27.6px;
   }
@@ -30,6 +31,7 @@ h2 {
     font-size: 66px;
     font-style: italic;
     font-weight: 400;
+    text-transform: uppercase;
     @media screen and (max-width: 767px) {
     font-size: 46px;
   }
@@ -40,6 +42,7 @@ h3 {
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
+    text-transform: uppercase;
 }
 
 .legend {
