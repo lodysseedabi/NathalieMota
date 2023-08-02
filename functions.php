@@ -26,3 +26,5 @@
      );
  }
  add_action( 'wp_enqueue_scripts', 'NathalieMontaTheme_register_assets' );
+
+  

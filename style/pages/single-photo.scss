@@ -1,0 +1,25 @@
+.publication {
+display: flex;
+max-width: 90% ;
+margin: 0 150px;
+}
+
+.info-publication {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 50%;
+}
+
+.info-publication h2 {
+    text-transform: uppercase;
+}
+
+.bloc-photo-publication {
+    display: flex;
+    width: 50%;
+}
+
+.photo-publication {
+    width: 50%;
+}

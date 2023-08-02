@@ -1,5 +1,3 @@
-console.log('coucou');
-
 // Menu hamburger 
 document.addEventListener("DOMContentLoaded", function () {
     const hamburgerIcon = document.querySelector(".hamburger-icon");
@@ -29,15 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Ouverture de la modale de contact au clique sur l'onglet Contact du menu 
-document.addEventListener("DOMContentLoaded", function () {
-  var modal = document.getElementById("contactModal");
+  document.addEventListener("DOMContentLoaded", function () {
+  var modal = document.getElementById("container-contact-modal");
 
   function openModal() {
-    modal.classList.add("open");
+    modal.style.display = "block";
   }
 
   function closeModal() {
-    modal.classList.remove("open");
+    modal.style.display = "none";
   }
 
   // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
@@ -50,11 +48,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gestionnaire d'événement pour fermer la modale en cliquant en dehors de celle-ci
-  window.addEventListener("click", function (event) {
-    if (event.target === modal) {
-      closeModal();
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal()
     }
-  });
+  }
 });
+
+//Chargement de plus de photos sur la page d'accueil
+
+
+
+
 
 

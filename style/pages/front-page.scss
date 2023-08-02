@@ -1,0 +1,21 @@
+/* Style pour la grille */
+.container-photos {
+  margin: 0 auto;
+}
+
+.ligne-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-2 {
+  padding: 10px;
+}
+
+/* Style pour les images */
+.vignette {
+  width: 42vw;
+  height: calc(42vw);
+  object-fit: cover; /* Pour que l'image conserve ses proportions et remplisse le conteneur */
+}
