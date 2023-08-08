@@ -25,23 +25,25 @@ document.addEventListener("DOMContentLoaded", function () {
   crossIcon.addEventListener("click", closeMobileMenu);
 
   //Création d'une classe modale
-  let Modale = class{
-    constructor(container){
-      this.container=container;
+  let Modale = class {
+    constructor(container) {
+      this.container = container;
     }
-    open(){
+    open() {
       this.container.style.display = "block";
     }
-    close(){
+    close() {
       this.container.style.display = "none";
     }
-  }
+  };
 
-   //Ouverture de la modale de contact au clique sur l'onglet Contact du menu
-  let contactmodale = new Modale (document.getElementById("container-contact-modal"));
+  //Ouverture de la modale de contact au clique sur l'onglet Contact du menu
+  let contactmodale = new Modale(
+    document.getElementById("container-contact-modal")
+  );
 
   //Ouverture de la lightbox au clique sur la photo
-  //let contactmodale = new Modale (document.getElementById("utiliser le container de la photo"));
+  let lightboxmodale = new Modale (document.getElementById("container-lightbox-modal"));
 
   // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
   var contactTabs = document.querySelectorAll('a[href="#contactModal"]');
@@ -54,6 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Gestionnaire d'événement au clic sur l'onglet "Contact" de la page d'une photo
+  var contactTabs = document.querySelectorAll('a[href="#contactphoto"]');
+  contactTabs.forEach(function (contactTab) {
+    contactTab.addEventListener("click", function (event) {
+      event.preventDefault();
+      contactmodale.open();
+      remplirChamp();
+    });
+  });
+
+  // Gestionnaire d'événement au clic sur une photo
   var contactTabs = document.querySelectorAll('a[href="#contactphoto"]');
   contactTabs.forEach(function (contactTab) {
     contactTab.addEventListener("click", function (event) {
@@ -78,4 +90,40 @@ document.addEventListener("DOMContentLoaded", function () {
       contactmodale.close();
     }
   };
+
+
+  //Charger plus de photos sur la page d'accueil
+  //Charger plus de photos sur la page d'accueil
+jQuery(document).ready(function($) {
+  $('.charger-plus-btn').click(function() {
+    var button = $(this);
+    var page = button.data('page');
+    var maxPages = button.data('max-pages');
+    var nonce = button.data('nonce');
+    var container = $('.grid-photos');
+
+    if (page <= maxPages) {
+      $.ajax({
+        url: custom_script_vars.ajaxurl, // Utilisation de custom_script_vars.ajaxurl
+        type: 'post',
+        data: {
+          action: 'load_more_photos',
+          nonce: nonce,
+          page: page
+        },
+        success: function(response) {
+          container.append(response);
+          button.data('page', page++); 
+          if (page >= maxPages) {
+            button.remove();
+          }
+        }
+        
+      });
+    }
+    
+  });
+});
+
+  
 });

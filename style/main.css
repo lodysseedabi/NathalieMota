@@ -285,6 +285,10 @@ textarea {
   font-size: 12px;
 }
 
+.page-principale {
+  margin: 40px 120px;
+}
+
 .hero {
   width: 100%;
   height: 1000px;
@@ -299,6 +303,28 @@ textarea {
 .hero h1 {
   color: transparent;
   -webkit-text-stroke: 2px white;
+}
+
+.charger-plus {
+  display: flex;
+  justify-content: center;
+}
+
+.charger-plus-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #D8D8D8;
+  font-family: "SpaceMono", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+  padding: 15px 90px;
+}
+
+.charger-plus-btn:hover {
+  cursor: pointer;
 }
 
 .single-page-body {
@@ -494,14 +520,14 @@ textarea {
 }
 
 /* Style pour les images */
-#vignettes {
+.vignettes {
   width: 100%;
   height: 40vw;
   -o-object-fit: cover;
      object-fit: cover;
 }
 @media screen and (max-width: 767px) {
-  #vignettes {
+  .vignettes {
     height: 80vw;
   }
 }
