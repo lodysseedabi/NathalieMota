@@ -73,6 +73,29 @@
         </div>
       </div>
 
+      <!-- Test -->
+      <?php 
+      $args = array(
+            'post_type' => 'photo',
+            'posts_per_page' => -1, //Pour récupérer tous les posts
+            'order' => 'ASC',
+            'orderby' => 'date',
+            'post__not_in' => array($post->ID), // Exclure la publication actuelle
+          );
+      
+      
+      $next_post = get_next_post();
+      $previous_post = get_previous_post();
+
+      if (is_a($next_post, 'WP_Post')) {
+        $next_photo_image = get_field('photo', $next_post->ID);
+        if ($next_photo_image) {
+          $next_post_photo_url = esc_url($next_photo_image['url']);
+        }
+      }
+
+      ?>
+
       <div class="demande-contact">
         <div class="contact-photo">
           <p> Cette photo vous intéresse ? </p>
@@ -80,20 +103,27 @@
         </div>
         <div class="photo-suiv-prec">
           <div class="contener-miniature-arrow">
-            <div class="miniature">
-              <?php if ($photo_image) {
-                echo '<img class="photo-publication" src="' . esc_url($photo_image['url']) . '" alt="' . esc_attr($photo_image['alt']) . '">';
-              } ?>
+            <div class="miniature" id="current-miniature">
+              <?php if (isset($next_post_photo_url)): ?>
+                <img class="photo-publication" src="<?php echo $next_post_photo_url; ?>" alt="Publication suivante">
+              <?php endif; ?>
             </div>
             <div class="arrow-prec-suiv">
-              <img src="<?php echo get_template_directory_uri() . '/assets/images/left arrow.png'; ?> "
-                alt="arrow left">
-              <img src="<?php echo get_template_directory_uri() . '/assets/images/right arrow.png'; ?> "
-                alt="arrow right">
+              <a href="#" class="prev-photo" data-prev-url="<?php echo $previous_post_photo_url; ?>">
+                <img class="arrow-left"
+                  src="<?php echo get_template_directory_uri() . '/assets/images/left arrow.png'; ?>" alt="arrow left">
+              </a>
+              <a href="#" class="next-photo" data-next-url="<?php echo $next_post_photo_url; ?>">
+                <img class="arrow-right"
+                  src="<?php echo get_template_directory_uri() . '/assets/images/right arrow.png'; ?>"
+                  alt="arrow right">
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Test -->
 
       <div class="suggestion">
         <div class="titre-suggestion">
@@ -147,7 +177,7 @@
         </div>
 
         <div class="bouton-suggestion">
-        <a class="bouton-single-photo" href="<?php echo esc_url(home_url('/') ); ?>">Toutes les photos</a>
+          <a class="bouton-single-photo" href="<?php echo esc_url(home_url('/')); ?>">Toutes les photos</a>
         </div>
 
       </div>

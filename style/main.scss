@@ -10,7 +10,11 @@
  @import "components/photo-block.scss";
 
  // Définition des styles globaux
-p {
+body {
+  margin: 0;
+}
+
+ p {
     font-family: 'Poppins';
     font-size: 14px;
     font-weight: 300;

@@ -1,4 +1,9 @@
 <?php get_header(); ?>
+<div class="hero">
+  <h1>Photographe Event</h1>
+</div>
+
+
 <div class="grid-photos">
   <?php
   $args = array(
