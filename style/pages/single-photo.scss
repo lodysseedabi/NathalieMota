@@ -120,27 +120,40 @@
   width: 25px;
 }
 
-.bouton-single-photo {
+.bouton-single-photo, .bouton-contact-single-photo{
   border: none;
   border-radius: 5px;
-  height: 50px;
-  width: 270px;
   background-color: $gris-medium;
   font-family: "SpaceMono", sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
+  text-decoration: none;
+  color: black;
+  padding: 15px 60px;
 }
+
+.bouton-single-photo:hover {
+  background-color: black;
+  color: white;
+}
+
 
 //Bloc suggestions photos
 .suggestion {
   display: flex;
   flex-direction: column;
-  margin: 71px 0;
+  margin: 70px 0;
+  @media screen and (max-width: 767px) {
+    margin: 10px 0;
+  }
 }
 
 .titre-suggestion {
   display: flex;
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
 }
 
 .photo-suggestion {
@@ -155,3 +168,4 @@
     display: none;
   }
 }
+
