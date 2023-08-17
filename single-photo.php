@@ -73,26 +73,16 @@
         </div>
       </div>
 
-      <!-- Test -->
-      <?php 
+      <!-- Miniature pour faire défilier les photos -->
+      <?php
       $args = array(
-            'post_type' => 'photo',
-            'posts_per_page' => -1, //Pour récupérer tous les posts
-            'order' => 'ASC',
-            'orderby' => 'date',
-            'post__not_in' => array($post->ID), // Exclure la publication actuelle
-          );
-      
-      
-      $next_post = get_next_post();
-      $previous_post = get_previous_post();
-
-      if (is_a($next_post, 'WP_Post')) {
-        $next_photo_image = get_field('photo', $next_post->ID);
-        if ($next_photo_image) {
-          $next_post_photo_url = esc_url($next_photo_image['url']);
-        }
-      }
+        'post_type' => 'photo',
+        'posts_per_page' => -1,
+        //Pour récupérer tous les posts
+        'order' => 'ASC',
+        'orderby' => 'date',
+        'post__not_in' => array($post->ID), // Exclure la publication actuelle
+      );
 
       ?>
 
@@ -103,27 +93,40 @@
         </div>
         <div class="photo-suiv-prec">
           <div class="contener-miniature-arrow">
-            <div class="miniature" id="current-miniature">
-              <?php if (isset($next_post_photo_url)): ?>
-                <img class="photo-publication" src="<?php echo $next_post_photo_url; ?>" alt="Publication suivante">
-              <?php endif; ?>
+            <div class="miniature">
+            <img id="current-photo" class="photo-publication" src="<?php echo esc_url($photo_image['url']); ?>"
+                alt="Photo actuelle">
             </div>
             <div class="arrow-prec-suiv">
-              <a href="#" class="prev-photo" data-prev-url="<?php echo $previous_post_photo_url; ?>">
-                <img class="arrow-left"
-                  src="<?php echo get_template_directory_uri() . '/assets/images/left arrow.png'; ?>" alt="arrow left">
-              </a>
-              <a href="#" class="next-photo" data-next-url="<?php echo $next_post_photo_url; ?>">
-                <img class="arrow-right"
-                  src="<?php echo get_template_directory_uri() . '/assets/images/right arrow.png'; ?>"
-                  alt="arrow right">
-              </a>
+              <?php
+              $post_precedent = get_previous_post();
+              if (!empty($post_precedent)) {
+                $photo_post_precedent = get_field('photo', $post_precedent->ID);
+                if ($photo_post_precedent) {
+                  echo '<a href="' . get_permalink($post_precedent) . '" class="prev-photo">';
+                  echo '<img class="arrow-left" src="' . esc_url(get_template_directory_uri() . '/assets/images/left arrow.png') . '" alt="flèche gauche">';
+                  echo '<span class="thumbnail-prev" style="background-image: url(' . esc_url($photo_post_precedent['url']) . ');"></span>';
+                  echo '</a>';
+                }
+              }
+
+              $post_suivant = get_next_post();
+              if (!empty($post_suivant)) {
+                $photo_post_suivant = get_field('photo', $post_suivant->ID);
+                if ($photo_post_suivant) {
+                  echo '<a href="' . get_permalink($post_suivant) . '" class="next-photo">';
+                  echo '<img class="arrow-right" src="' . esc_url(get_template_directory_uri() . '/assets/images/right arrow.png') . '" alt="flèche droite">';
+                  echo '<span class="thumbnail-next" style="background-image: url(' . esc_url($photo_post_suivant['url']) . ');"></span>';
+                  echo '</a>';
+                }
+              }
+              ?>
             </div>
+
           </div>
         </div>
       </div>
 
-      <!-- Test -->
 
       <div class="suggestion">
         <div class="titre-suggestion">

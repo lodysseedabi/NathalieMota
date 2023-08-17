@@ -43,14 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   //Ouverture de la lightbox au clique sur la photo
-  let lightboxmodale = new Modale (document.getElementById("container-lightbox-modal"));
+  let lightboxmodale = new Modale(
+    document.getElementById("container-lightbox-modal")
+  );
 
   // Gestionnaire d'événement au clic sur l'onglet "Contact" du menu
   var contactTabs = document.querySelectorAll('a[href="#contactModal"]');
   contactTabs.forEach(function (contactTab) {
     contactTab.addEventListener("click", function (event) {
       event.preventDefault();
-      //openModal();
       contactmodale.open();
     });
   });
@@ -65,13 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Gestionnaire d'événement au clic sur une photo
-  var contactTabs = document.querySelectorAll('a[href="#contactphoto"]');
+  // Gestionnaire d'événement au clic sur une photo (lightbox)
+  var contactTabs = document.querySelectorAll('a[href="#lightbox"]');
   contactTabs.forEach(function (contactTab) {
     contactTab.addEventListener("click", function (event) {
       event.preventDefault();
-      contactmodale.open();
-      remplirChamp();
+      lightboxmodale.open();
     });
   });
 
@@ -91,39 +91,74 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  // Gestionnaire d'événement pour la croix de fermeture de la lightbox
+var closeCross = document.querySelector('.cross-icon-lightbox');
+if (closeCross) {
+    closeCross.addEventListener('click', function() {
+        lightboxmodale.close();
+    });
+}
 
   //Charger plus de photos sur la page d'accueil
-  //Charger plus de photos sur la page d'accueil
-jQuery(document).ready(function($) {
-  $('.charger-plus-btn').click(function() {
-    var button = $(this);
-    var page = button.data('page');
-    var maxPages = button.data('max-pages');
-    var nonce = button.data('nonce');
-    var container = $('.grid-photos');
+  jQuery(document).ready(function ($) {
+    $(".charger-plus-btn").click(function () {
+      var button = $(this);
+      var page = button.data("page");
+      var maxPages = button.data("max-pages");
+      var nonce = button.data("nonce");
+      var container = $(".grid-photos");
+      var sortOrder = $("#sort-order").val();
+      var categories = $("#categorie-filter").val();
+      var formats = $("#format-filter").val();
 
-    if (page <= maxPages) {
-      $.ajax({
-        url: custom_script_vars.ajaxurl, // Utilisation de custom_script_vars.ajaxurl
-        type: 'post',
-        data: {
-          action: 'load_more_photos',
-          nonce: nonce,
-          page: page
-        },
-        success: function(response) {
-          container.append(response);
-          button.data('page', page++); 
-          if (page >= maxPages) {
-            button.remove();
-          }
-        }
-        
-      });
-    }
-    
+      if (page <= maxPages) {
+        $.ajax({
+          url: custom_script_vars.ajaxurl,
+          type: "post",
+          data: {
+            action: "load_more_photos",
+            nonce: nonce,
+            page: page,
+            sortOrder: sortOrder,
+            categories: categories,
+            formats: formats,
+          },
+          success: function (response) {
+            container.append(response);
+            button.data("page", page++);
+            if (page >= maxPages) {
+              button.hide();
+            }
+          },
+        });
+      }
+    });
   });
-});
 
-  
+  //Filtrer les photos par catégories et formats
+  jQuery(document).ready(function ($) {
+    $(".filtres select").on("change", function () {
+      // Obtenez les valeurs sélectionnées des filtres
+      var categories = $("#categorie-filter").val();
+      var formats = $("#format-filter").val();
+      var sortOrder = $("#sort-order").val();
+      var button = $(".charger-plus-btn");
+
+      // Envoyez une requête AJAX
+      $.ajax({
+        url: custom_script_vars.ajaxurl, // URL de l'action AJAX
+        type: "POST",
+        data: {
+          action: "filter_photos", // Action du côté serveur
+          categories: categories,
+          formats: formats,
+          sortOrder: sortOrder,
+        },
+        success: function (response) {
+          button.show();
+          $(".grid-photos").html(response);
+        },
+      });
+    });
+  });
 });

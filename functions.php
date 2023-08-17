@@ -43,14 +43,29 @@ add_action('wp_enqueue_scripts', 'NathalieMontaTheme_register_assets');
 function load_more_photos()
 {
     check_ajax_referer('load_more_photos', 'nonce');
-
+    $sortOrder = $_POST['sortOrder'];
+    $categorie = $_POST['categories'];
+    $format = $_POST['formats'];
     $page = intval($_POST['page']);
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 12,
         'paged' => $page,
-        'order' => 'ASC',
+        'order' => ($sortOrder === 'asc') ? 'ASC' : 'DESC',
         'orderby' => 'date',
+        'tax_query' => array(
+            'relation' => 'AND',
+             array(
+               'taxonomy' => 'category',
+               'field' => 'slug',
+               'terms' => $format,
+             ),
+              array(
+                'taxonomy' => 'category',
+               'field' => 'slug',
+               'terms' => $categorie,
+              ),
+          ),
     );
 
     $query = new WP_Query($args);
@@ -66,3 +81,59 @@ function load_more_photos()
 }
 add_action('wp_ajax_load_more_photos', 'load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'load_more_photos');
+
+
+ //Filtrer les photos par catégories et formats
+// Action pour traiter la demande AJAX
+add_action('wp_ajax_filter_photos', 'filter_photos');
+add_action('wp_ajax_nopriv_filter_photos', 'filter_photos');
+
+function filter_photos() {
+    // Paramètres de la demande AJAX
+    $categorie = $_POST['categories'];
+    $format = $_POST['formats'];
+    $sortOrder = $_POST['sortOrder'];
+  
+    $args = array(
+      'post_type' => 'photo',
+      'posts_per_page' => 12,
+      'orderby' => 'date',
+      'order' => ($sortOrder === 'asc') ? 'ASC' : 'DESC',
+      'tax_query' => array(
+        'relation' => 'AND',
+         array(
+           'taxonomy' => 'category',
+           'field' => 'slug',
+           'terms' => $format,
+         ),
+          array(
+            'taxonomy' => 'category',
+           'field' => 'slug',
+           'terms' => $categorie,
+          ),
+      ),
+    );
+  
+    // Requête WP_Query
+    $query = new WP_Query($args);
+  
+    //HTML pour les nouveaux résultats
+    ob_start();
+  
+    if ($query->have_posts()) {
+      while ($query->have_posts()) {
+        $query->the_post();
+        get_template_part('parts/photo-block');
+      }
+    } else {
+      echo 'Aucun résultat trouvé.';
+    }
+  
+    $response = ob_get_clean();
+  
+    echo $response;
+    wp_die();
+  }
+  
+
+  

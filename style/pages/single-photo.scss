@@ -1,8 +1,8 @@
 .single-page-body {
   margin: 0 150px;
   @media screen and (max-width: 767px) {
-    margin: 0 50px;
-}
+    margin: 0 80px;
+  }
 }
 
 // Bloc infos photos et photos
@@ -24,7 +24,7 @@
   padding-bottom: 25px;
   @media screen and (max-width: 767px) {
     width: 100%;
-}
+  }
 }
 
 .info-publication h2 {
@@ -41,12 +41,12 @@
 }
 
 .bloc-photo-publication-mobile {
-    display: flex;
-    width: 100%;
-    @media screen and (min-width: 767px) {
-      display: none;
+  display: flex;
+  width: 100%;
+  @media screen and (min-width: 767px) {
+    display: none;
   }
-  }
+}
 
 .bloc-photo-publication-desktop {
   display: flex;
@@ -54,14 +54,14 @@
   width: 50%;
   @media screen and (max-width: 767px) {
     display: none;
-}
+  }
 }
 
 .photo-publication {
   width: 90%;
   @media screen and (max-width: 767px) {
     width: 100%;
-}
+  }
 }
 
 // Bloc cette photo vous intéresse ?
@@ -71,7 +71,7 @@
   border-bottom: 1px solid black;
   align-items: center;
   @media screen and (max-width: 767px) {
-  padding-bottom: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -81,10 +81,32 @@
   justify-content: space-between;
   @media screen and (max-width: 767px) {
     width: 100%;
-    flex-direction: column;;
+    flex-direction: column;
     align-items: center;
+  }
 }
+
+.bouton-single-photo,
+.bouton-contact-single-photo {
+  border: none;
+  border-radius: 5px;
+  background-color: $gris-medium;
+  font-family: "SpaceMono", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+  padding: 15px 60px;
 }
+
+.bouton-single-photo:hover {
+  background-color: black;
+  color: white;
+}
+
+
+// Post suivant / Post précédent avec miniature
 .contener-miniature-arrow {
   display: flex;
   flex-direction: column;
@@ -103,14 +125,18 @@
 .miniature {
   display: flex;
   justify-content: center;
+  height: 80px;
+  width: 80px;
 }
 
 .miniature img {
   height: 80px;
   width: 80px;
+  display: none;
 }
 
 .arrow-prec-suiv {
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -120,23 +146,33 @@
   width: 25px;
 }
 
-.bouton-single-photo, .bouton-contact-single-photo{
-  border: none;
-  border-radius: 5px;
-  background-color: $gris-medium;
-  font-family: "SpaceMono", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  text-decoration: none;
-  color: black;
-  padding: 15px 60px;
+.thumbnail-prev,
+.thumbnail-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px; /* Ajustez la taille de la miniature */
+  height: 80px; /* Ajustez la taille de la miniature */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.bouton-single-photo:hover {
-  background-color: black;
-  color: white;
+.thumbnail-prev {
+  margin: -54px -25px;
 }
+
+.thumbnail-next {
+  margin: -54px -80px;
+}
+
+.prev-photo:hover .thumbnail-prev,
+.next-photo:hover .thumbnail-next {
+  opacity: 1;
+}
+
 
 
 //Bloc suggestions photos
