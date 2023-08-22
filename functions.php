@@ -13,8 +13,6 @@ function enqueue_select2_assets() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_select2_assets');
 
-
-
 // Enregistre les styles et scripts principaux du thème
 function NathalieMontaTheme_register_assets()
 {
@@ -35,7 +33,7 @@ function NathalieMontaTheme_register_assets()
     // Fournit des données au script avec wp_localize_script
     wp_localize_script('NathalieMotaTheme', 'custom_script_vars', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('load_more_photos')
+        'nonce' => wp_create_nonce('load_more_photos'),
     ));
 }
 add_action('wp_enqueue_scripts', 'NathalieMontaTheme_register_assets');

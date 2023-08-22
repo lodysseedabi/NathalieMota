@@ -209,12 +209,16 @@ function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
       var sortOrder = $("#sort-order").val();
       var button = $(".charger-plus-btn");
 
+         // Récupérer le nonce (jeton de sécurité)
+         var nonce = custom_script_vars.nonce;
+
       // Envoyez une requête AJAX
       $.ajax({
         url: custom_script_vars.ajaxurl, // URL de l'action AJAX
         type: "POST",
         data: {
-          action: "filter_photos", // Action du côté serveur
+          action: "filter_photos",
+          nonce: nonce,
           categories: categories,
           formats: formats,
           sortOrder: sortOrder,
