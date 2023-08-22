@@ -36,19 +36,20 @@ $post_permalink = get_permalink();
         <div class="contener-infos">
             <?php
             // Afficher la référence
-            echo '<p><span class="ref-photo">' . esc_html($reference) . '</span></p>';
+            echo '<p><span id="ref-photo">' . esc_html($reference) . '</span></p>';
 
             // Afficher la catégorie
             if (!empty($terms)) {
-                echo '<p><span class="legend">';
+                echo '<p><span id="categorie-photo">';
                 foreach ($terms as $term) {
                     if ($term->parent == 3) {
                         echo $term->name;
                     }
                 }
-                echo '</p>';
+                echo '</span></p>';
             }
             ?>
         </div>
     </div>
+    
 </div>

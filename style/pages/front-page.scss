@@ -59,20 +59,6 @@
 }
 
 // Filtres et tris
-#categorie-filter,
-#sort-order,
-#format-filter {
-  min-width: 350px;
-  padding: 15px;
-  margin: 10px 0;
-  font-family: "Poppins";
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  border-radius: 10px;
-  border: 2px solid $gris-fonce;
-}
-
 .filtres {
   display: flex;
   @media screen and (max-width: 767px) {
@@ -85,7 +71,7 @@
   display: flex;
   width: 50%;
   justify-content: space-between;
-  padding-right: 20px;
+  padding-right: 50px;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     justify-content: center;
@@ -102,12 +88,54 @@
   }
 }
 
-option:hover,
-option:active,
-option:checked,
-option:focus,
-option:target,
-option:focus-visible {
-  background-color: red !important;
+/* Style pour les options dans Select2 */
+.select2-results__option {
+  background-color: white;
+  color: black;
+}
+
+/* Au survol de la souris */
+.select2-results__option:hover {
+  background-color: red;
   color: white;
+}
+
+span.select2-selection.select2-selection--single {
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: 2px solid $gris-fonce;
+}
+
+.select2-container--default .select2-results>.select2-results__options {
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: red;
+  color: white;
+}
+
+li#select2-format-filter-result-076b-format {
+  color: white;
+}
+
+li#select2-format-filter-result-076b-format {
+  color: white;
+}
+
+.select2-search--dropdown {
+  display: none;
+}
+
+span.select2.select2-container.select2-container--default {
+  width: 350px !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+  background-color: $rouge-tertiaire;
 }

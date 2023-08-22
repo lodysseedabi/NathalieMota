@@ -66,15 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Gestionnaire d'événement au clic sur une photo (lightbox)
-  var contactTabs = document.querySelectorAll('a[href="#lightbox"]');
-  contactTabs.forEach(function (contactTab) {
-    contactTab.addEventListener("click", function (event) {
-      event.preventDefault();
-      lightboxmodale.open();
-    });
-  });
-
   function remplirChamp() {
     // Récupérer l'élément du formulaire par son id
     var champ = document.getElementById("wpforms-14-field_3");
@@ -91,12 +82,86 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Gestionnaire d'événement pour la croix de fermeture de la lightbox
-var closeCross = document.querySelector('.cross-icon-lightbox');
-if (closeCross) {
-    closeCross.addEventListener('click', function() {
-        lightboxmodale.close();
+// Gestionnaire d'événement au clic sur une photo (lightbox)
+var fullscreenlightbox = document.querySelectorAll('a[href="#lightbox"]');
+fullscreenlightbox.forEach(function (fullscreenlightbox) {
+  fullscreenlightbox.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Récupérer les valeurs de la photo spécifique
+    var photoItem = fullscreenlightbox.closest('.photo-item');
+    var imageUrl = photoItem.querySelector('.vignettes').src;
+    var refPhotoElement = photoItem.querySelector('#ref-photo').textContent;
+    var catPhotoElement = photoItem.querySelector('#categorie-photo').textContent;
+
+    // Créez un tableau de toutes les photos dans le même groupe
+    var photos = [];
+    var photoItems = document.querySelectorAll('.photo-item');
+    photoItems.forEach(function (item) {
+      var img = item.querySelector('.vignettes').src;
+      var ref = item.querySelector('#ref-photo').textContent;
+      var cat = item.querySelector('#categorie-photo').textContent;
+      photos.push({
+        imageUrl: img,
+        reference: ref,
+        categorie: cat
+      });
     });
+
+    // Trouvez l'index de la photo actuelle
+    var currentPhotoIndex = photos.findIndex(function (photo) {
+      return photo.imageUrl === imageUrl;
+    });
+
+    remplirRef(imageUrl, refPhotoElement, catPhotoElement, photos, currentPhotoIndex);
+    lightboxmodale.open();
+  });
+});
+
+function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
+  // Récupérer les éléments à remplir automatiquement
+  var lightboxImage = document.getElementById("img-lightbox");
+  var lightboxReference = document.getElementById("reference-photo");
+  var lightboxCategories = document.getElementById("lightbox-categories");
+
+  // Remplir les éléments de la modale lightbox avec les données de la photo actuelle
+  lightboxImage.src = imageUrl;
+  lightboxReference.textContent = reference;
+  lightboxCategories.textContent = categorie;
+
+  // Gestionnaire d'événement pour la croix de fermeture de la lightbox
+  var closeCross = document.querySelector(".cross-icon-lightbox");
+  if (closeCross) {
+    closeCross.addEventListener("click", function () {
+      lightboxmodale.close();
+    });
+  }
+
+  var prevLink = document.getElementById("lightbox-prev-link");
+  if (prevLink) {
+    prevLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      currentPhotoIndex--;
+      if (currentPhotoIndex < 0) {
+        currentPhotoIndex = photos.length - 1;
+      }
+      var photo = photos[currentPhotoIndex];
+      remplirRef(photo.imageUrl, photo.reference, photo.categorie, photos, currentPhotoIndex);
+    });
+  }
+
+  var nextLink = document.getElementById("lightbox-next-link");
+  if (nextLink) {
+    nextLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      currentPhotoIndex++;
+      if (currentPhotoIndex >= photos.length) {
+        currentPhotoIndex = 0;
+      }
+      var photo = photos[currentPhotoIndex];
+      remplirRef(photo.imageUrl, photo.reference, photo.categorie, photos, currentPhotoIndex);
+    });
+  }
 }
 
   //Charger plus de photos sur la page d'accueil
@@ -160,5 +225,14 @@ if (closeCross) {
         },
       });
     });
+
+    // Utilisation bibliothèque Select2 pour personnaliser la couleur des sélecteurs de filtres et tris
+    $(document).ready(function () {
+      $("#sort-order").select2();
+      $("#categorie-filter").select2();
+      $("#format-filter").select2();
+    });
   });
+
+
 });

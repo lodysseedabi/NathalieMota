@@ -17,13 +17,13 @@
       <div class="mobile-menu">
         <?php wp_nav_menu('Menu Principal') ?>
       </div>
-        <div class="hamburger-icon">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/burger.png'; ?> " alt="icon hamburger">
-        </div>
-        <div class="cross-icon">
-          <img src="<?php echo get_template_directory_uri() . '/assets/images/cross.png'; ?> " alt="icon cross">
-        </div>
-      
+      <div class="hamburger-icon">
+        <img src="<?php echo get_template_directory_uri() . '/assets/images/burger.png'; ?> " alt="icon hamburger">
+      </div>
+      <div class="cross-icon">
+        <img src="<?php echo get_template_directory_uri() . '/assets/images/cross.png'; ?> " alt="icon cross">
+      </div>
+
     </div>
   </nav>
 </header>

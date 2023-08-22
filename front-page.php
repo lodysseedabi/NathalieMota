@@ -2,7 +2,7 @@
 <div class="hero">
 <?php
 $query_args = array(
-    'orderby' => 'rand',            // Ordonner aléatoirement
+    'orderby' => 'rand',
     'posts_per_page' => 1,          
     'post_type' => 'photo',          
 );
@@ -61,7 +61,7 @@ wp_reset_postdata();
     </div>
     <div class="contener-tri">
       <select id="sort-order">
-        <option value="all">Trier par</option>
+        <option value="asc">Trier par</option>
         <option value="desc">Des plus récentes aux plus anciennes</option>
         <option value="asc">Des plus anciennes aux plus récentes</option>
       </select>
