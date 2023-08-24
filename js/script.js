@@ -83,40 +83,43 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 // Gestionnaire d'événement au clic sur une photo (lightbox)
-var fullscreenlightbox = document.querySelectorAll('a[href="#lightbox"]');
-fullscreenlightbox.forEach(function (fullscreenlightbox) {
-  fullscreenlightbox.addEventListener("click", function (event) {
-    event.preventDefault();
+initLightbox();
+function initLightbox() {
+  var fullscreenlightbox = document.querySelectorAll('a[href="#lightbox"]');
+  fullscreenlightbox.forEach(function (fullscreenlightbox) {
+    fullscreenlightbox.addEventListener("click", function (event) {
+      event.preventDefault();
 
-    // Récupérer les valeurs de la photo spécifique
-    var photoItem = fullscreenlightbox.closest('.photo-item');
-    var imageUrl = photoItem.querySelector('.vignettes').src;
-    var refPhotoElement = photoItem.querySelector('#ref-photo').textContent;
-    var catPhotoElement = photoItem.querySelector('#categorie-photo').textContent;
+      // Récupérer les valeurs de la photo spécifique
+      var photoItem = fullscreenlightbox.closest('.photo-item');
+      var imageUrl = photoItem.querySelector('.vignettes').src;
+      var refPhotoElement = photoItem.querySelector('#ref-photo').textContent;
+      var catPhotoElement = photoItem.querySelector('#categorie-photo').textContent;
 
-    // Créez un tableau de toutes les photos dans le même groupe
-    var photos = [];
-    var photoItems = document.querySelectorAll('.photo-item');
-    photoItems.forEach(function (item) {
-      var img = item.querySelector('.vignettes').src;
-      var ref = item.querySelector('#ref-photo').textContent;
-      var cat = item.querySelector('#categorie-photo').textContent;
-      photos.push({
-        imageUrl: img,
-        reference: ref,
-        categorie: cat
+      // Créez un tableau de toutes les photos dans le même groupe
+      var photos = [];
+      var photoItems = document.querySelectorAll('.photo-item');
+      photoItems.forEach(function (item) {
+        var img = item.querySelector('.vignettes').src;
+        var ref = item.querySelector('#ref-photo').textContent;
+        var cat = item.querySelector('#categorie-photo').textContent;
+        photos.push({
+          imageUrl: img,
+          reference: ref,
+          categorie: cat
+        });
       });
-    });
 
-    // Trouvez l'index de la photo actuelle
-    var currentPhotoIndex = photos.findIndex(function (photo) {
-      return photo.imageUrl === imageUrl;
-    });
+      // Trouvez l'index de la photo actuelle
+      var currentPhotoIndex = photos.findIndex(function (photo) {
+        return photo.imageUrl === imageUrl;
+      });
 
-    remplirRef(imageUrl, refPhotoElement, catPhotoElement, photos, currentPhotoIndex);
-    lightboxmodale.open();
+      remplirRef(imageUrl, refPhotoElement, catPhotoElement, photos, currentPhotoIndex);
+      lightboxmodale.open();
+    });
   });
-});
+}
 
 function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
   // Récupérer les éléments à remplir automatiquement
@@ -167,6 +170,7 @@ function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
   //Charger plus de photos sur la page d'accueil
   jQuery(document).ready(function ($) {
     $(".charger-plus-btn").click(function () {
+      // Valeurs sélectionnées
       var button = $(this);
       var page = button.data("page");
       var maxPages = button.data("max-pages");
@@ -194,6 +198,7 @@ function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
             if (page >= maxPages) {
               button.hide();
             }
+            initLightbox()
           },
         });
       }
@@ -203,7 +208,7 @@ function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
   //Filtrer les photos par catégories et formats
   jQuery(document).ready(function ($) {
     $(".filtres select").on("change", function () {
-      // Obtenez les valeurs sélectionnées des filtres
+      // Valeurs sélectionnées des filtres
       var categories = $("#categorie-filter").val();
       var formats = $("#format-filter").val();
       var sortOrder = $("#sort-order").val();
@@ -226,10 +231,11 @@ function remplirRef(imageUrl, reference, categorie, photos, currentPhotoIndex) {
         success: function (response) {
           button.show();
           $(".grid-photos").html(response);
+          initLightbox()
         },
       });
     });
-
+    
     // Utilisation bibliothèque Select2 pour personnaliser la couleur des sélecteurs de filtres et tris
     $(document).ready(function () {
       $("#sort-order").select2();
