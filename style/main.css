@@ -892,3 +892,11 @@ h3 {
   font-weight: 400;
   text-transform: uppercase;
 }
+
+.content {
+  margin: 100px;
+}
+
+.content h1 {
+  text-align: center;
+}

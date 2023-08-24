@@ -4,8 +4,8 @@
 <footer>
     <div class=footer>
         <ul>
-            <li><a href="#">Mentions Légales</a></li>
-            <li><a href="#">Vie Privée</a></li>
+            <li><a href="http://nathalie-mota.local/mentions-legales/">Mentions Légales</a></li>
+            <li><a href="http://nathalie-mota.local/vie-privee">Vie Privée</a></li>
             <li><p>Tous droits réservés</p></li>
         </ul>
     </div>
